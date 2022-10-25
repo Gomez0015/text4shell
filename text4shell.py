@@ -21,9 +21,9 @@ group.add_argument('-u', metavar='url', type=str, help='url to scan')
 group.add_argument('-uf', metavar='url_file', type=str, help='file containing a list of urls seperated by newline')
 
 parser.add_argument('-p', metavar='parameter', type=str, help='parameter to test')
+parser.add_argument('-pf', metavar='parameter_file', type=str, help='file containing list of parameters seperated by newline')
 
 args = parser.parse_args()
-
 
 def setup():
     global payload
@@ -68,7 +68,17 @@ def scan_url(url):
             print(f"parameter {bcolors.fail(args.p)} on {bcolors.fail(url)} is vulnerable")
         else:
             print(f"parameter {bcolors.ok(args.p)} on {bcolors.ok(url)} is not vulnerable")
+    elif args.pf != None:
+        for line in open(args.pf):
+            print(f"Testing parameter {bcolors.ok(line)}")
 
+            method = 'get'
+            data = url + "?" + line + "=" + payload
+            
+            if listen_conn(method, data):
+                print(f"parameter {bcolors.fail(line)} on {bcolors.fail(url)} is vulnerable")
+            else:
+                print(f"parameter {bcolors.ok(line)} on {bcolors.ok(url)} is not vulnerable")
     else:
         form = re.search(form_regex, str(requests.get(url).content)).group(0)
 
