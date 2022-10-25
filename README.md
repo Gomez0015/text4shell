@@ -6,7 +6,7 @@ cd text4shell && pip install -r requirements.txt
 
 # Usage
 
-## Scan URL's forms and try injecting payload
+## Scan URL(s) forms and try injecting payload
 ```sh
 python text4shell.py -u <URL>
 ```
@@ -15,9 +15,13 @@ OR
 python text4shell.py -uf <URL_FILE>
 ```
 
-## Attempt injection on a specific parameter
+## Attempt injection on a specific parameter(s)
 ```sh
 python text4shell.py -u <URL> -p <PARAM>
+```
+OR
+```sh
+python text4shell.py -u <URL> -pf <PARAM_FILE>
 ```
 
 Was tested using this tutorial:
