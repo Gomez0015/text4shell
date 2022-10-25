@@ -15,7 +15,7 @@ OR
 python text4shell.py -uf <URL_FILE>
 ```
 
-## Attempt injection on a specific parameter(s)
+## Attempt injection on specific parameter(s)
 ```sh
 python text4shell.py -u <URL> -p <PARAM>
 ```
